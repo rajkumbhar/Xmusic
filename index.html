@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <title>Xmusic | search it and get it.</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="index.css">
+</head>
+
+<body ng-app="myApp" ng-controller="myControl">
+    <div class="container"><center>
+        <div class="col-lg-12" style="padding-top: 4%;">
+            <h2 style="font-family: ubuntu;">Search within the music</h2>
+            <input type="text" class="form-control" ng-model="searchSong" placeholder="Search for songs in the list">
+        </div></center>
+    </div>    
+    
+    <!-- music displyed down here -->
+    <div class="col-lg-12">
+    <div class="jumbotron" style="margin-top: 7%;">
+        <table class="table table-hover">
+            <thead>
+                <tr class="danger" id="head">
+                <th>Sr.No.</th>    
+                <th>Song Name</th>
+                <th>Artist Name</th>
+                <th>Song </th>    
+                </tr>
+            </thead> 
+            <tbody>
+                <tr ng-repeat="x in Result = (songs | filter:searchSong)" class="success"> <td>{{x.num}}</td>    
+                <td>{{x.name}}</td>
+                <td>{{x.artist}}</td>  
+                <td><audio style="width: 100%; padding-right: 70px;" controls>
+                    <source src="{{x.song}}" type="audio/mpeg">{{x.name}}
+                    </audio>
+                </td> 
+                </tr>
+            </tbody>
+        </table>
+        <p ng-show="(songs | filter:searchSong).length"></p>
+        <p ng-if="Result.lenght=== 0" >you can request for this song</p>    
+    </div>    
+    </div>
+
+<script>
+    var app = angular.module("myApp",[]);
+    app.controller("myControl",function($scope){
+        $scope.songs = [
+            {"num" : "1",
+             "name" : "Shape of you",
+             "artist" : "Ed Sheeran",
+             "song" : "shape_of_you.mp3"
+            },
+            
+            {"num" : "2",
+             "name" : "What do you mean?",
+             "artist" : "Justin biber",
+             "song" : "what_do_you_mean.mp3"
+            },
+            
+            {"num" : "3",
+             "name" : "Love story",
+             "artist" : "Taylor swift",
+             "song" : "love_story.mp3"
+            },
+            
+            {"num" : "4",
+             "name" : "Closer",
+             "artist" : "The Chainsmokers",
+             "song" : "closer.mp3"
+            },
+           
+        ];
+    });
+</script> 
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
